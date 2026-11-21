@@ -1,0 +1,63 @@
+# Phase 2 source inventory.
+# Do not treat a planned entry as validated coverage or permission to redistribute.
+sources:
+  - id: eurostat_sdg_05_20
+    status: initial_coverage_audited
+    role: unadjusted_gender_pay_gap
+    retrieval_url: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_05_20
+    requested_geographies: [DE, ES, FR, SE]
+    planned_period: 2010-2023
+    snapshot_path: data/raw/eurostat/sdg_05_20.json
+    retrieved_at_utc: 2026-11-21T14:35:24.659159+00:00
+    sha256: 0e7f38c4eae5eaf3d0c5522b4030f0c4f57fa22fac813e776f5c24ededf7e23c
+    audited_configuration: {freq: A, unit: PC, nace_r2: B-S_X_O}
+    metadata_to_confirm: [flag_meanings, source_version, licence, redistribution_terms]
+
+  - id: eurostat_sdg_05_30
+    status: initial_coverage_audited
+    role: gender_employment_gap
+    retrieval_url: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_05_30
+    requested_geographies: [DE, ES, FR, SE]
+    planned_period: 2010-2023
+    snapshot_path: data/raw/eurostat/sdg_05_30.json
+    retrieved_at_utc: 2026-11-21T14:35:25.130712+00:00
+    sha256: 2a2df029fb637b1bef7fda5464541e0e6713a02b7ce5b8d05146d12535c2239e
+    audited_configuration: {freq: A, age: Y20-64, unit: PC_PNT, wstatus: [EMP, EMP_PT, EMP_TEMP, UEMP_PT]}
+    metadata_to_confirm: [final_wstatus_selection, flag_meanings, source_version, licence, redistribution_terms]
+
+  - id: ches_europe_trend_1999_2024
+    status: initial_coverage_audited_codebook_review_pending
+    role: party_positions
+    landing_page: https://www.chesdata.eu/ches-europe/
+    dataset_url: https://github.com/chesdata/chesdata.github.io/releases/download/ches-trend/1999-2024_CHES_dataset_meansV2.csv
+    planned_period: 2010-2023
+    snapshot_path: data/raw/ches/1999-2024_CHES_dataset_meansV2.csv
+    retrieved_at_utc: 2026-11-21T14:38:45.910773+00:00
+    sha256: 254384ab9f542bbaa62ec7e0dc36f2d0cc0471629c2c9587d0ecaed34914a033
+    coverage_result: all_pilot_countries_in_waves_2010_2014_2019
+    metadata_to_confirm: [country_code_mapping, party_identifiers, original_scales, citation, licence, redistribution_terms]
+
+  - id: parlgov_development_2023_11_04
+    status: initial_coverage_audited_codebook_review_pending
+    role: cabinets_and_parties
+    landing_page: https://www.parlgov.org/data-info/
+    dataset_url: https://www.parlgov.org/data/parlgov-development_csv-utf-8.zip
+    codebook_url: https://www.parlgov.org/data/codebook.pdf
+    planned_period: 2010-2023
+    snapshot_path: data/raw/parlgov/parlgov-development_csv-utf-8.zip
+    retrieved_at_utc: 2026-11-21T14:38:46.640574+00:00
+    sha256: b73241bfe188f35e8bd3c8b5a4853cdb7f7030aac7c1b8bd5a07fc9a5b9bb773
+    coverage_result: cabinet_periods_overlap_pilot_window_for_all_countries
+    metadata_to_confirm: [cabinet_end_date_convention, party_identifiers, country_codes, release_limit, citation, licence, redistribution_terms]
+
+  - id: oecd_family_database
+    status: pending_indicator_selection
+    role: candidate_policy_context
+    landing_page: https://www.oecd.org/en/data/datasets/oecd-family-database.html
+    metadata_to_confirm: [indicator_definition, country_year_coverage, units, release, licence, redistribution_terms]
+
+  - id: eige_gender_equality_index
+    status: optional_pending_methodology_review
+    role: optional_context
+    landing_page: https://eige.europa.eu/gender-equality-index
+    metadata_to_confirm: [series_comparability, methodology_breaks, country_year_coverage, licence, redistribution_terms]
