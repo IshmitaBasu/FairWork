@@ -1,0 +1,8 @@
+fairwork:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      path: data/processed/fairwork.duckdb
+      schema: analytics
+      threads: 1

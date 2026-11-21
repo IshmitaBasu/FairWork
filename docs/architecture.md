@@ -19,7 +19,7 @@ flowchart LR
   G -.-> D
 ```
 
-Eurostat outcome facts, dated cabinet periods and a reviewed party-crosswalk queue now feed the planned analytics layer. Source terms determine which raw files can be stored or redistributed; raw CHES, ParlGov and OECD snapshots remain excluded from Git. Published exports will be read-only snapshots, not a live database. A refresh is a reproducible rebuild followed by validation and a deliberate publication.
+Eurostat outcome facts, OECD policy facts, dated cabinet periods and a reviewed party-crosswalk queue now feed the local analytics layer. The implemented DuckDB warehouse materializes separate country-year and cabinet-period marts, validates their intended grains, and exports read-only Parquet snapshots. Source terms determine which raw files can be stored or redistributed; raw CHES, ParlGov and OECD snapshots remain excluded from Git. A refresh is a reproducible rebuild followed by validation and a deliberate publication.
 
 ## Dashboard wireframe
 

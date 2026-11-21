@@ -1,0 +1,17 @@
+name: fairwork
+version: "1.0"
+config-version: 2
+profile: fairwork
+
+model-paths: ["dbt/models"]
+test-paths: ["dbt/tests"]
+target-path: "data/processed/dbt_target"
+clean-targets: ["data/processed/dbt_target"]
+
+models:
+  fairwork:
+    +schema: analytics
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

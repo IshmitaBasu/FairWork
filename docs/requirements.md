@@ -1,6 +1,6 @@
 # FairWork MVP requirements
 
-**Status:** Updated after Phase 3, 21 November 2026. The approved core scope is 2010–2022; redistribution conditions remain enforced.
+**Status:** Updated after Phase 4, 21 November 2026. The approved core scope is 2010–2022; redistribution conditions remain enforced.
 
 ## Purpose and scope
 
@@ -24,7 +24,7 @@ The approved pilot is Germany, France, Spain and Sweden for 2010–2022. The pol
 - Country-year and political joins must be audited for duplicate multiplication and unresolved mappings. Cabinet changes within a year must remain visible.
 - Charts must label pay gap as unadjusted and employment gap in percentage points; show uncertainty where available and avoid causal or partisan claims.
 - Empty selections and unavailable data must produce understandable messages. The interface must be usable on a typical laptop and a narrow mobile screen.
-- Python and dbt checks must pass; a clean environment must be able to reproduce the published data and app. Source licences and redistribution permissions must be checked before publication.
+- The executable Python/DuckDB checks must pass; the matching dbt checks must also pass before any public release. A clean environment must be able to reproduce the published data and app. Source licences and redistribution permissions must be checked before publication.
 - The portfolio release will include a public Streamlit Community Cloud demo, subject to its available resources, plus setup instructions and methods. Local execution is the fallback during development.
 
 ## Out of scope

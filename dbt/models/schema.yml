@@ -1,0 +1,74 @@
+version: 2
+
+models:
+  - name: stg_country
+    description: Approved four-country identifier crosswalk.
+    columns:
+      - name: country_iso3
+        tests: [not_null, unique]
+
+  - name: fact_gender_outcome
+    description: Eurostat outcome facts at country-year-metric grain with source flags retained.
+    columns:
+      - name: country_iso3
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_country')
+                field: country_iso3
+      - name: observation_year
+        tests: [not_null]
+      - name: metric
+        tests:
+          - accepted_values:
+              arguments:
+                values: [unadjusted_gender_pay_gap_pct, gender_employment_gap_pp]
+      - name: unit
+        tests:
+          - accepted_values:
+              arguments:
+                values: [PC, PC_PNT]
+
+  - name: fact_policy_indicator
+    description: OECD PF3.2 observations at country-year-indicator grain.
+    columns:
+      - name: country_iso3
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_country')
+                field: country_iso3
+      - name: observation_year
+        tests: [not_null]
+      - name: indicator
+        tests:
+          - accepted_values:
+              arguments:
+                values: [enrolment_0_2_registered_ecec_pct]
+      - name: unit
+        tests:
+          - accepted_values:
+              arguments:
+                values: [PC]
+
+  - name: mart_country_year
+    description: One outcome row per approved country-year; cabinet periods are intentionally excluded to prevent row multiplication.
+    columns:
+      - name: country_iso3
+        tests: [not_null]
+      - name: observation_year
+        tests: [not_null]
+
+  - name: mart_cabinet_transition
+    description: Dated cabinet-period transitions, with no annualisation.
+    columns:
+      - name: parlgov_cabinet_id
+        tests: [not_null, unique]
+      - name: country_iso3
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_country')
+                field: country_iso3

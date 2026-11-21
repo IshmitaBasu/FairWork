@@ -2,7 +2,7 @@
 
 ## Source and coverage gate
 
-**Completed for MVP scoping on 21 November 2026.** The approved scope and exclusions are in `reports/phase_2_scope_decision.md`; the harmonized output and party-link quarantine are in `reports/phase_3_harmonization.md`.
+**Completed through analytics engineering on 21 November 2026.** The approved scope and exclusions are in `reports/phase_2_scope_decision.md`; the harmonized output and party-link quarantine are in `reports/phase_3_harmonization.md`; tested grains and exports are in `reports/phase_4_analytics_engineering.md`.
 
 In Week 2, inventory source release, download location, retrieval date, licence, redistribution conditions, dimensions, units, flags and country-year coverage. Construct a country × year × source × metric availability matrix before choosing the final pilot. Confirm the Eurostat age, economic activity and other dimensions from the actual files. Verify ParlGov cabinet end dates and CHES party identifiers against downloaded codebooks. Document reasons for exclusions and revisions; no values or coverage are assumed confirmed yet.
 
@@ -12,7 +12,7 @@ In Week 2, inventory source release, download location, retrieval date, licence,
 2. Standardize country identifiers and retain original identifiers, time, units, source dimensions and observation flags. Never replace missing values with zero.
 3. Retain cabinets as dated periods and their parties as separate bridge records. Review a versioned ParlGov-to-CHES crosswalk; quarantine uncertain matches.
 4. Preserve CHES survey waves and original scales. Any rule linking a wave to a cabinet must specify direction, maximum age and missingness; do not present interpolated values as observed. Finalize the rule after inspecting coverage.
-5. Build analysis marts with explicit grains and tests for keys, referential integrity, ranges and unexpected join multiplication. Keep multiple cabinet periods separate from annual outcomes.
+5. Build analysis marts with explicit grains and tests for keys, referential integrity, ranges and unexpected join multiplication. The implemented country-year and cabinet-transition marts retain multiple cabinet periods separately from annual outcomes.
 
 ## Analysis and reporting
 
