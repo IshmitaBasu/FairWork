@@ -17,3 +17,11 @@ python -m src.ingestion.audit_political_sources
 ```
 
 It stores local CHES and ParlGov snapshots and emits coverage and schema profiles. Subsequent runs reuse the existing snapshot; pass `--refresh` only to deliberately retrieve a new release. It does not create a party crosswalk or make a cabinet-to-year assignment.
+
+Profile the locally retrieved OECD PF3.2 workbook:
+
+```powershell
+python -m src.ingestion.audit_oecd_pf32
+```
+
+The audit selects the workbook's 0–2-year-old registered-ECEC series for coverage assessment only. It does not treat the series as an intervention or publish the source values.

@@ -8,6 +8,10 @@
 
 **Planning convention:** Checked tasks are completed; unchecked tasks remain future work. Mockups, example rows and numerical targets are **illustrative or acceptance targets**, not already achieved results.
 
+## Implementation update — 21 November 2026
+
+Phase 2 is complete for MVP scoping. The approved countries are Germany, France, Spain and Sweden; the core outcome/political integration period is **2010–2022**, and the comparative OECD policy-context panel is **2015–2022**. EIGE is excluded from the MVP because of its 2025 methodology reset. See `reports/phase_2_scope_decision.md` for evidence, exclusions and publication conditions. Phase 3 harmonization is next.
+
 ---
 
 ## 1. Project Overview

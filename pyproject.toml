@@ -13,6 +13,7 @@ authors = [{ name = "FairWork contributors" }]
 dependencies = []
 
 [project.optional-dependencies]
+audit = ["openpyxl>=3.1"]
 dev = []
 
 [tool.pytest.ini_options]

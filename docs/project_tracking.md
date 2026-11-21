@@ -1,6 +1,12 @@
 # Project tracking
 
-This is a local planning board. A GitHub repository and hosted project board have not been created or verified.
+This is a local planning board. The GitHub repository is connected; a hosted project board has not been created.
+
+## Current delivery status — 21 November 2026
+
+- [x] Phase 1 — local repository foundation and planning artefacts.
+- [x] Phase 2 — source audit and MVP scope decision; see `reports/phase_2_scope_decision.md`.
+- [ ] Phase 3 — country harmonization, cabinet periods and reviewed party crosswalk.
 
 | Milestone | Status | Next evidence |
 |---|---|---|
