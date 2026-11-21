@@ -6,7 +6,8 @@ This is a local planning board. The GitHub repository is connected; a hosted pro
 
 - [x] Phase 1 — local repository foundation and planning artefacts.
 - [x] Phase 2 — source audit and MVP scope decision; see `reports/phase_2_scope_decision.md`.
-- [ ] Phase 3 — country harmonization, cabinet periods and reviewed party crosswalk.
+- [x] Phase 3 — country harmonization, cabinet periods and reviewed party crosswalk; see `reports/phase_3_harmonization.md`.
+- [ ] Phase 4 — analytics engineering and tested curated marts.
 
 | Milestone | Status | Next evidence |
 |---|---|---|
