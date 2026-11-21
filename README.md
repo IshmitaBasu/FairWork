@@ -4,7 +4,9 @@ FairWork is a reproducible exploratory data project about governing coalitions, 
 
 ## Current status
 
-**Phase 1 complete locally; Phase 2 is in progress.** The proposed pilot is Germany, France, Spain and Sweden from 2010–2023, pending a complete source-coverage and licensing audit. Initial Eurostat snapshots have been audited locally; no analysis has been performed or published.
+**Phase 3 complete; Phase 4 is next.** The approved pilot is Germany, France, Spain and Sweden. Core outcomes and political context cover 2010–2022; the comparative OECD policy-context panel covers 2015–2022. No statistical analysis or public dashboard has been published.
+
+Phase 3 produced a 52-row country-year outcome panel, 34 dated cabinet periods, and a reviewed party crosswalk with 19 accepted links. Seven unsupported party links remain quarantined.
 
 ## Planned MVP
 
@@ -28,11 +30,13 @@ FairWork is a reproducible exploratory data project about governing coalitions, 
 - [Architecture](docs/architecture.md) — local Python, DuckDB, dbt and Streamlit design.
 - [Methodology](docs/methodology_plan.md) — source and inference safeguards.
 - [Project tracking](docs/project_tracking.md) — current status and next actions.
+- [Phase 2 scope decision](reports/phase_2_scope_decision.md) — approved data scope and exclusions.
+- [Phase 3 harmonization report](reports/phase_3_harmonization.md) — panel, cabinet-period and party-crosswalk results.
 
 ## Next step
 
-Complete the Phase 2 source-overlap audit: record source terms and versions, profile CHES and ParlGov identifiers and coverage, and build the full country × year × source × metric availability matrix before finalising the pilot scope.
+Start Phase 4: create tested staging and mart models in DuckDB, then export curated data without collapsing multiple cabinet periods into one annual government assignment.
 
 ## Intended local setup
 
-The implementation environment will be pinned in `pyproject.toml` as the data pipeline begins. Until then, this repository deliberately contains no unverified source data or credentials.
+The implementation environment is declared in `pyproject.toml`; the audit extra includes `openpyxl` for the retained OECD workbook. Raw source snapshots and credentials remain outside version control.

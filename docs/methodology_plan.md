@@ -2,6 +2,8 @@
 
 ## Source and coverage gate
 
+**Completed for MVP scoping on 21 November 2026.** The approved scope and exclusions are in `reports/phase_2_scope_decision.md`; the harmonized output and party-link quarantine are in `reports/phase_3_harmonization.md`.
+
 In Week 2, inventory source release, download location, retrieval date, licence, redistribution conditions, dimensions, units, flags and country-year coverage. Construct a country × year × source × metric availability matrix before choosing the final pilot. Confirm the Eurostat age, economic activity and other dimensions from the actual files. Verify ParlGov cabinet end dates and CHES party identifiers against downloaded codebooks. Document reasons for exclusions and revisions; no values or coverage are assumed confirmed yet.
 
 ## Data preparation

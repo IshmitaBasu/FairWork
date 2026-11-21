@@ -19,14 +19,14 @@ flowchart LR
   G -.-> D
 ```
 
-Source terms determine which raw files can be stored or redistributed. Published exports are read-only snapshots, not a live database. A refresh is a reproducible rebuild followed by validation and a deliberate publication; a scheduled check does not imply that every source automatically updates. Keep credentials out of the repository. Final app storage and deployment mechanics depend on file size and licences discovered in Week 2.
+Eurostat outcome facts, dated cabinet periods and a reviewed party-crosswalk queue now feed the planned analytics layer. Source terms determine which raw files can be stored or redistributed; raw CHES, ParlGov and OECD snapshots remain excluded from Git. Published exports will be read-only snapshots, not a live database. A refresh is a reproducible rebuild followed by validation and a deliberate publication.
 
 ## Dashboard wireframe
 
 ```text
 FairWork | Country explorer | Compare | Methods & sources
 -----------------------------------------------------------
-Country [Germany v]   Indicator [Pay gap v]   Years [2010—2023]
+Country [Germany v]   Indicator [Pay gap v]   Years [2010—2022]
 Unadjusted gender pay gap (%)   [definition and source]
   [trend chart; missing years visible; cabinet markers]
   Select a marker: cabinet dates, parties, source, mapping status

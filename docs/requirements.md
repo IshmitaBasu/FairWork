@@ -1,12 +1,12 @@
 # FairWork MVP requirements
 
-**Status:** Week 1 plan, 17 November 2026. Coverage and source permissions are not yet verified.
+**Status:** Updated after Phase 3, 21 November 2026. The approved core scope is 2010–2022; redistribution conditions remain enforced.
 
 ## Purpose and scope
 
 FairWork will let students, researchers, journalists and interested members of the public explore documented political and policy context alongside women's economic outcomes. It will explain measurement and limitations without ranking parties or implying that political context caused an observed change.
 
-The initial pilot is Germany, France, Spain and Sweden for 2010–2023. These are provisional: the Week 2 coverage audit may narrow the countries, years or indicators. The minimum useful release needs at least one adequately documented outcome and cabinet timeline for each retained country; it must show gaps rather than fill them with invented observations.
+The approved pilot is Germany, France, Spain and Sweden for 2010–2022. The policy-context comparison panel is limited to 2015–2022. The minimum useful release needs at least one adequately documented outcome and cabinet timeline for each retained country; it must show gaps rather than fill them with invented observations.
 
 ## User requirements
 

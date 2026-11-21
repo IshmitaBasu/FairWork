@@ -1,6 +1,6 @@
 # Research questions and scope
 
-**Pilot:** Germany, France, Spain and Sweden, 2010–2023, contingent on the Week 2 source-overlap audit. Observations are aggregate and primarily country-year; cabinet periods and CHES waves retain their own dates.
+**Pilot:** Germany, France, Spain and Sweden. Core outcome/political context covers 2010–2022; the OECD policy-context panel covers 2015–2022. Observations are aggregate and primarily country-year; cabinet periods and CHES waves retain their own dates.
 
 ## Questions
 

@@ -1,9 +1,9 @@
 # FairWork — Project Roadmap
 
-> **Project status:** Local foundation complete; Week 2 source-coverage audit in progress  
+> **Project status:** Phase 3 harmonization complete; Phase 4 analytics engineering is next
 > **Working title:** **FairWork — Politics, Policy & Women's Economic Equality in Europe**  
 > **Geographic pilot:** Germany, France, Spain and Sweden, **subject to confirmed overlap in source coverage**  
-> **Proposed historical window:** **2010–2023**, subject to dataset and cabinet coverage checks  
+> **Approved core historical window:** **2010–2022**; policy-context comparison **2015–2022**
 > **Core deliverable:** A reproducible, interactive data product for exploring associations among governing coalitions, political-party positions, family/labour policies and gender-related economic outcomes.
 
 **Planning convention:** Checked tasks are completed; unchecked tasks remain future work. Mockups, example rows and numerical targets are **illustrative or acceptance targets**, not already achieved results.
