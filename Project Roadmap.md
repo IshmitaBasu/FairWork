@@ -22,6 +22,8 @@ Phase 2 is complete for MVP scoping. The approved countries are Germany, France,
 
 **Phase 7 update — 22 November 2026:** GitHub Actions now checks Python syntax and unit tests on pull requests and `main`, including an end-to-end DuckDB warehouse test against tiny invented Testland fixture files. It does not access ignored raw or curated source data. A source-monitoring workflow remains pending a compliant retrieval strategy. See `.github/workflows/ci.yml`, `tests/fixtures/warehouse/` and `docs/deployment_readiness.md`.
 
+**Phase 8 preparation — 22 November 2026:** A detailed case study, dashboard image archive and release evaluation are now documented. Public deployment and public dashboard screenshots remain gated on source terms and a reproducible hosted-data strategy. See `docs/portfolio_case_study.md`, `docs/images/README.md` and `docs/release_evaluation.md`.
+
 ---
 
 ## 1. Project Overview
@@ -996,20 +998,14 @@ The following improvements **may be considered only after the MVP is validated**
 
 ---
 
-## 14. Planned Portfolio and CV Wording — **Use Only After Building**
+## 14. Portfolio description
 
-**Working project title:** FairWork — Political Economy of Gender Equality in Europe  
-**Planned stack:** Python, SQL, DuckDB, dbt Core, Plotly, Streamlit, GitHub Actions, optional Azure
+**Project title:** FairWork — Political Economy of Gender Equality in Europe
+**Implemented stack:** Python, DuckDB, Plotly, Streamlit and GitHub Actions.
 
-**Candidate portfolio summary (future wording):**
+FairWork is a reproducible exploratory data product that places documented government transitions, party survey positions and limited family-policy context beside gender pay and employment trends in four European countries. It uses tested transformation and warehouse checks, reviewed cabinet-party links and an interactive dashboard while maintaining a clear descriptive, non-causal interpretation boundary.
 
-> FairWork will be an open-data research application exploring how recorded government transitions, party positions and selected family-policy indicators relate to gender pay and employment trends across European countries. It will include versioned ingestion, tested analytical models, reproducible statistical analysis and transparent reporting of limitations.
-
-**Candidate CV bullet, only after confirmed implementation:**
-
-> Built a reproducible European political-economy analytics platform integrating Eurostat, CHES and ParlGov datasets; developed tested dbt models, documented cabinet-party joins and an interactive dashboard for exploring gender pay/employment trends alongside historical government changes.
-
-**Additional measurable results that will be recorded:** Number of countries/years actually covered, source observations retained, data-quality tests passed, manually reviewed political-party mappings, data-refresh reliability and dashboard performance. **None of these will be invented in advance.**
+Current measured scope: four countries, 52 country-year outcome rows, 34 dated cabinet periods, 32 policy-context observations, 54 reviewed CHES party-wave positions, 83 cabinet-party membership records and 10 automated local tests.
 
 ---
 

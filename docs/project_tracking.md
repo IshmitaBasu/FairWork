@@ -11,7 +11,7 @@ The GitHub repository is connected. A hosted project board is optional and has n
 | 5. Research | Complete | `reports/phase_5_descriptive_results.md` | — |
 | 6. Dashboard | Complete locally | `reports/phase_6_dashboard.md` | — |
 | 7. Quality and automation | In progress | `.github/workflows/ci.yml`, `tests/fixtures/warehouse/` | Add source-monitoring design |
-| 8. Release | Not started | — | Demo, documentation and portfolio case study |
+| 8. Release | In preparation | Detailed case study, evaluation and screenshot guide | Complete manual checks and data-terms gate before publishing |
 
 ## Current data decisions
 
@@ -47,3 +47,9 @@ The GitHub repository is connected. A hosted project board is optional and has n
 - Committed Testland fixture records are invented structural data, not source extracts or derivatives; they verify cabinet transitions and the policy left join end to end.
 - Raw source snapshots remain excluded from CI until their terms permit a compliant retrieval strategy.
 - Next: design a permitted upstream source-monitoring workflow.
+
+## Phase 8 preparation
+
+- Added a detailed case study with outcome, policy-context and cabinet-timeline visuals, an image archive and an evidence-based release evaluation.
+- Public dashboard deployment and public data screenshots remain blocked pending the source-terms and hosted-data checks.
+- Remaining release work: manual UI and source reconciliation checks, followed by a decision on a licensed hosted-data strategy.

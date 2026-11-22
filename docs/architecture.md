@@ -2,7 +2,7 @@
 
 ## Decisions
 
-Development, ingestion, modelling and analysis run locally using Python, DuckDB and dbt Core. Curated, precomputed files now feed a local Streamlit and Plotly dashboard. The intended public demo is Streamlit Community Cloud, subject to a separate source-terms and deployment review; no AWS, Azure, managed database or always-on data pipeline is required. GitHub Actions runs syntax and unit checks on pull requests and `main`; fixture-based data-build checks and optional refresh monitoring remain future work.
+Development, ingestion, modelling and analysis run locally using Python, DuckDB and dbt Core. Curated, precomputed files now feed a local Streamlit and Plotly dashboard. The intended public demo is Streamlit Community Cloud, subject to a separate source-terms and deployment review; no AWS, Azure, managed database or always-on data pipeline is required. GitHub Actions runs syntax, unit and synthetic-fixture warehouse checks on pull requests and `main`; optional permitted refresh monitoring remains future work.
 
 ```mermaid
 flowchart LR
