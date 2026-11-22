@@ -1,0 +1,3 @@
+country_iso3,observation_year,pay_gap_value,pay_gap_flag,employment_gap_value,employment_gap_flag
+TST,2020,12.5,,7.5,b
+TST,2021,12.0,,7.0,

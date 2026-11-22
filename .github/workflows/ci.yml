@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install test and dashboard dependencies
-        run: python -m pip install --upgrade pip && python -m pip install ".[audit,analysis,dashboard]"
+        run: python -m pip install --upgrade pip && python -m pip install ".[audit,pipeline,analysis,dashboard]"
       - name: Check Python syntax
         run: python -m compileall -q app.py src
       - name: Run unit tests

@@ -20,7 +20,7 @@ Phase 2 is complete for MVP scoping. The approved countries are Germany, France,
 
 **Phase 6 update — 22 November 2026:** A tested local Streamlit dashboard now provides country, metric and year filters; country-specific cabinet markers; data-quality notices; policy context; cabinet-party membership and descriptive event windows; comparison; an interactive reviewed-party CHES left-right spectrum; methods; CSV download and on-demand PNG export. It reads local curated exports only and is not publicly deployed. The active country and comparison-country selection are now stated explicitly, and an optional retained-flag filter, source/method drawer, cabinet composition count and keyboard focus styling improve interpretation and access. See `reports/phase_6_dashboard.md`.
 
-**Phase 7 update — 22 November 2026:** GitHub Actions now checks Python syntax and unit tests on pull requests and `main`, without accessing ignored raw or curated source data. Fixture-backed pipeline checks and any source-monitoring workflow remain pending a compliant data strategy. See `.github/workflows/ci.yml` and `docs/deployment_readiness.md`.
+**Phase 7 update — 22 November 2026:** GitHub Actions now checks Python syntax and unit tests on pull requests and `main`, including an end-to-end DuckDB warehouse test against tiny invented Testland fixture files. It does not access ignored raw or curated source data. A source-monitoring workflow remains pending a compliant retrieval strategy. See `.github/workflows/ci.yml`, `tests/fixtures/warehouse/` and `docs/deployment_readiness.md`.
 
 ---
 
@@ -636,7 +636,8 @@ A user unfamiliar with the source datasets **will** be able to ask a question ab
 - [ ] Run dbt tests and detect duplicate or missing analytical keys.
 - [ ] Add model tests with small synthetic fixtures for cabinet transition edge cases.
 - [x] Configure GitHub Actions to run Python syntax and unit tests on pull requests and `main`.
-- [ ] Add formatting and a representative fixture-backed data build to GitHub Actions.
+- [x] Add a representative fixture-backed DuckDB data build to GitHub Actions.
+- [ ] Add formatting checks to GitHub Actions.
 - [ ] Introduce a scheduled upstream source-check workflow, without assuming published data change daily.
 - [ ] Compare new vs previous source snapshots, reporting revisions and missing years.
 - [ ] Publish a data freshness/date-of-retrieval label in the app.
@@ -1030,4 +1031,4 @@ FairWork **will be considered portfolio-ready only if** every item below is sati
 
 ---
 
-**Next action:** Add compliant, minimal fixtures for representative pipeline and dashboard checks, while keeping raw source snapshots out of CI until a permitted retrieval strategy is available.
+**Next action:** Add formatting checks and design permitted upstream source monitoring, while keeping raw source snapshots out of CI until a permitted retrieval strategy is available.

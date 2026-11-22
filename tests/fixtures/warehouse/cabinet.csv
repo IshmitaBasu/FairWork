@@ -1,0 +1,3 @@
+country_iso3,parlgov_cabinet_id,cabinet_name,start_date,end_date_exclusive,caretaker,date_rule
+TST,101,Test Cabinet One,2020-01-01,2021-01-01,false,synthetic_fixture
+TST,102,Test Cabinet Two,2021-01-01,2022-01-01,false,synthetic_fixture

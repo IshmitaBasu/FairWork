@@ -24,6 +24,16 @@ INPUTS = {
     "party_crosswalk": ROOT / "data" / "processed" / "political_context" / "party_crosswalk_review.csv",
     "ches_position": ROOT / "data" / "processed" / "harmonized" / "fact_ches_party_position.csv",
 }
+PILOT_COUNTS = {
+    "dim_country": 4,
+    "fact_gender_outcome": 104,
+    "stg_country_year_outcomes": 52,
+    "fact_policy_indicator": 32,
+    "fact_ches_party_position": 54,
+    "bridge_cabinet_party_membership": 83,
+    "mart_country_year": 52,
+    "mart_cabinet_transition": 34,
+}
 
 
 def sql_path(path: Path) -> str:
@@ -36,13 +46,23 @@ def assert_zero(connection: duckdb.DuckDBPyConnection, name: str, query: str) ->
         raise ValueError(f"Validation failed: {name} ({failures} invalid row(s))")
 
 
-def main() -> None:
-    missing = [str(path.relative_to(ROOT)) for path in INPUTS.values() if not path.exists()]
+def build_warehouse(
+    inputs: dict[str, Path] = INPUTS,
+    database_path: Path = DATABASE_PATH,
+    expected_counts: dict[str, int] | None = PILOT_COUNTS,
+) -> dict[str, int]:
+    """Build the warehouse from a supplied input map and return table counts.
+
+    Production uses the approved local input paths and their fixed pilot counts.
+    Tests pass small, invented fixture files and set ``expected_counts`` to
+    ``None`` so structural validation can run without real source data.
+    """
+    missing = [str(path) for path in inputs.values() if not path.exists()]
     if missing:
         raise FileNotFoundError(f"Build Phase 3 and policy-context inputs first: {', '.join(missing)}")
 
-    DATABASE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    connection = duckdb.connect(str(DATABASE_PATH))
+    database_path.parent.mkdir(parents=True, exist_ok=True)
+    connection = duckdb.connect(str(database_path))
     try:
         connection.execute("DROP SCHEMA IF EXISTS analytics CASCADE")
         connection.execute("CREATE SCHEMA analytics")
@@ -53,7 +73,7 @@ def main() -> None:
                    cast(ches_country_code AS integer) AS ches_country_code,
                    cast(parlgov_country_id AS integer) AS parlgov_country_id,
                    parlgov_country_short
-            FROM read_csv_auto('{sql_path(INPUTS['country'])}', header = true)
+            FROM read_csv_auto('{sql_path(inputs['country'])}', header = true)
             """
         )
         connection.execute(
@@ -66,7 +86,7 @@ def main() -> None:
                    parlgov_party_short, parlgov_party_name,
                    nullif(cast(ches_party_id AS varchar), '')::integer AS ches_party_id,
                    mapping_status, review_action
-            FROM read_csv_auto('{sql_path(INPUTS['cabinet_party_membership'])}', header = true)
+            FROM read_csv_auto('{sql_path(inputs['cabinet_party_membership'])}', header = true)
             """
         )
         connection.execute(
@@ -78,7 +98,7 @@ def main() -> None:
                    cast(seat_share_pct AS double) AS seat_share_pct,
                    cast(womens_rights_position AS double) AS womens_rights_position,
                    mapping_status, source_id
-            FROM read_csv_auto('{sql_path(INPUTS['ches_position'])}', header = true)
+            FROM read_csv_auto('{sql_path(inputs['ches_position'])}', header = true)
             """
         )
         connection.execute(
@@ -86,7 +106,7 @@ def main() -> None:
             CREATE TABLE analytics.fact_gender_outcome AS
             SELECT country_iso3, cast(observation_year AS integer) AS observation_year,
                    metric, cast(value AS double) AS value, unit, observation_flag, source_id
-            FROM read_csv_auto('{sql_path(INPUTS['gender_outcome'])}', header = true)
+            FROM read_csv_auto('{sql_path(inputs['gender_outcome'])}', header = true)
             """
         )
         connection.execute(
@@ -95,7 +115,7 @@ def main() -> None:
             SELECT country_iso3, cast(observation_year AS integer) AS observation_year,
                    cast(pay_gap_value AS double) AS pay_gap_value, pay_gap_flag,
                    cast(employment_gap_value AS double) AS employment_gap_value, employment_gap_flag
-            FROM read_csv_auto('{sql_path(INPUTS['country_year'])}', header = true)
+            FROM read_csv_auto('{sql_path(inputs['country_year'])}', header = true)
             """
         )
         connection.execute(
@@ -103,7 +123,7 @@ def main() -> None:
             CREATE TABLE analytics.fact_policy_indicator AS
             SELECT country_iso3, cast(observation_year AS integer) AS observation_year,
                    indicator, cast(value AS double) AS value, unit, source_id
-            FROM read_csv_auto('{sql_path(INPUTS['policy'])}', header = true)
+            FROM read_csv_auto('{sql_path(inputs['policy'])}', header = true)
             """
         )
         connection.execute(
@@ -113,7 +133,7 @@ def main() -> None:
                    cabinet_name, cast(start_date AS date) AS start_date,
                    nullif(cast(end_date_exclusive AS varchar), '')::date AS end_date_exclusive,
                    cast(caretaker AS boolean) AS caretaker, date_rule
-            FROM read_csv_auto('{sql_path(INPUTS['cabinet'])}', header = true)
+            FROM read_csv_auto('{sql_path(inputs['cabinet'])}', header = true)
             """
         )
         connection.execute(
@@ -123,7 +143,7 @@ def main() -> None:
                    parlgov_party_short, parlgov_party_name, ches_party_id,
                    mapping_method, mapping_status,
                    cast(ches_wave_observation AS boolean) AS ches_wave_observation, review_action
-            FROM read_csv_auto('{sql_path(INPUTS['party_crosswalk'])}', header = true)
+            FROM read_csv_auto('{sql_path(inputs['party_crosswalk'])}', header = true)
             """
         )
         connection.execute(
@@ -162,24 +182,25 @@ def main() -> None:
             """
         )
 
-        expected_counts = {
-            "dim_country": 4,
-            "fact_gender_outcome": 104,
-            "stg_country_year_outcomes": 52,
-            "fact_policy_indicator": 32,
-            "fact_ches_party_position": connection.execute(
-                "SELECT count(*) FROM analytics.fact_ches_party_position"
-            ).fetchone()[0],
-            "bridge_cabinet_party_membership": connection.execute(
-                "SELECT count(*) FROM analytics.bridge_cabinet_party_membership"
-            ).fetchone()[0],
-            "mart_country_year": 52,
-            "mart_cabinet_transition": 34,
+        table_names = (
+            "dim_country",
+            "fact_gender_outcome",
+            "stg_country_year_outcomes",
+            "fact_policy_indicator",
+            "fact_ches_party_position",
+            "bridge_cabinet_party_membership",
+            "mart_country_year",
+            "mart_cabinet_transition",
+        )
+        table_counts = {
+            table_name: connection.execute(f"SELECT count(*) FROM analytics.{table_name}").fetchone()[0]
+            for table_name in table_names
         }
-        for table_name, expected in expected_counts.items():
-            actual = connection.execute(f"SELECT count(*) FROM analytics.{table_name}").fetchone()[0]
-            if actual != expected:
-                raise ValueError(f"Expected {expected} rows in {table_name}; received {actual}")
+        if expected_counts is not None:
+            for table_name, expected in expected_counts.items():
+                actual = table_counts[table_name]
+                if actual != expected:
+                    raise ValueError(f"Expected {expected} rows in {table_name}; received {actual}")
         assert_zero(
             connection,
             "country identifiers are unique and populated",
@@ -257,11 +278,16 @@ def main() -> None:
                WHERE start_date >= coalesce(end_date_exclusive, date '9999-12-31')""",
         )
         connection.commit()
-        print(f"Built and validated {DATABASE_PATH.relative_to(ROOT)}")
-        for table_name in expected_counts:
-            print(f"analytics.{table_name}: {expected_counts[table_name]} rows")
+        return table_counts
     finally:
         connection.close()
+
+
+def main() -> None:
+    table_counts = build_warehouse()
+    print(f"Built and validated {DATABASE_PATH.relative_to(ROOT)}")
+    for table_name, row_count in table_counts.items():
+        print(f"analytics.{table_name}: {row_count} rows")
 
 
 if __name__ == "__main__":

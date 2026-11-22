@@ -1,0 +1,5 @@
+country_iso3,observation_year,metric,value,unit,observation_flag,source_id
+TST,2020,unadjusted_gender_pay_gap_pct,12.5,PC,,synthetic_fixture
+TST,2020,gender_employment_gap_pp,7.5,PC_PNT,b,synthetic_fixture
+TST,2021,unadjusted_gender_pay_gap_pct,12.0,PC,,synthetic_fixture
+TST,2021,gender_employment_gap_pp,7.0,PC_PNT,,synthetic_fixture

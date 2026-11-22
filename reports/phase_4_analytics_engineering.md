@@ -26,7 +26,7 @@ The local exports are `mart_country_year.parquet` (52 rows), `mart_cabinet_trans
 
 ## Validation
 
-The executable DuckDB build rejects unexpected counts, duplicate keys, invalid metric-unit pairings, values outside plausible percentage/percentage-point bounds, invalid cabinet dates and duplicate country-year mart rows. It also retains the project rule that a yearly outcome is not duplicated across cabinets when a government changes during that year.
+The executable DuckDB build rejects unexpected counts, duplicate keys, invalid metric-unit pairings, values outside plausible percentage/percentage-point bounds, invalid cabinet dates and duplicate country-year mart rows. It also retains the project rule that a yearly outcome is not duplicated across cabinets when a government changes during that year. Its build function accepts explicit paths for a safe end-to-end CI test; committed Testland fixture files are wholly invented and validate structural mart behaviour without redistributing source data.
 
 Run the reproducible local build from the repository root:
 

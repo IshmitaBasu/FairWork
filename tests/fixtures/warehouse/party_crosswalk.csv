@@ -1,0 +1,2 @@
+country_iso3,parlgov_party_id,parlgov_party_short,parlgov_party_name,ches_party_id,mapping_method,mapping_status,ches_wave_observation,review_action
+TST,201,TP,Test Party,501,synthetic_fixture,accepted_manual,true,synthetic_fixture

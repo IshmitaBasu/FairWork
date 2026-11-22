@@ -1,0 +1,2 @@
+country_iso3,observation_year,indicator,value,unit,source_id
+TST,2020,enrolment_0_2_registered_ecec_pct,45.0,PC,synthetic_fixture

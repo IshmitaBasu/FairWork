@@ -4,7 +4,7 @@ FairWork is a reproducible exploratory data project about governing coalitions, 
 
 ## Current status
 
-**Phase 6 local dashboard is complete; Phase 7 quality automation is next.** The approved pilot is Germany, France, Spain and Sweden. Core outcomes and political context cover 2010–2022; the comparative OECD policy-context panel covers 2015–2022. No causal statistical analysis or public dashboard has been published.
+**Phase 6 local dashboard is complete; Phase 7 quality automation is in progress.** The approved pilot is Germany, France, Spain and Sweden. Core outcomes and political context cover 2010–2022; the comparative OECD policy-context panel covers 2015–2022. No causal statistical analysis or public dashboard has been published.
 
 Phase 3 produced a 52-row country-year outcome panel, 34 dated cabinet periods, and a reviewed party crosswalk with 19 accepted links. Seven unsupported party links remain quarantined. Phase 4 adds 32 OECD policy facts, 54 reviewed CHES party-wave positions, a validated local DuckDB warehouse and curated Parquet exports. Phase 5 adds reproducible descriptive figures, coverage summaries and flag-sensitivity checks. Phase 6 adds a tested local Streamlit dashboard with an interactive political spectrum.
 
@@ -37,10 +37,11 @@ Phase 3 produced a 52-row country-year outcome panel, 34 dated cabinet periods, 
 - [Dashboard guide](docs/dashboard_guide.md) — local run instructions, filters and interpretation safeguards.
 - [Phase 6 dashboard report](reports/phase_6_dashboard.md) — features, validation and publication boundary.
 - [Deployment-readiness checklist](docs/deployment_readiness.md) — release gate for data terms, reproducibility and public hosting.
+- [Synthetic warehouse fixture](tests/fixtures/warehouse/README.md) — invented Testland records used for CI only.
 
 ## Next step
 
-Phase 7 is in progress: GitHub Actions now runs syntax and unit checks on pull requests and `main`; the next safe work is CI fixtures and a permitted source-monitoring design.
+Phase 7 is in progress: GitHub Actions now runs syntax, unit tests and an invented fixture-based DuckDB warehouse build on pull requests and `main`; the next safe work is a permitted source-monitoring design.
 
 ## Intended local setup
 

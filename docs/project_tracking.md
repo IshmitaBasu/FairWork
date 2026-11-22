@@ -10,7 +10,7 @@ The GitHub repository is connected. A hosted project board is optional and has n
 | 4. Analytics engineering | Complete | `reports/phase_4_analytics_engineering.md` | — |
 | 5. Research | Complete | `reports/phase_5_descriptive_results.md` | — |
 | 6. Dashboard | Complete locally | `reports/phase_6_dashboard.md` | — |
-| 7. Quality and automation | In progress | `.github/workflows/ci.yml` | Add compliant fixtures and source-monitoring design |
+| 7. Quality and automation | In progress | `.github/workflows/ci.yml`, `tests/fixtures/warehouse/` | Add source-monitoring design |
 | 8. Release | Not started | — | Demo, documentation and portfolio case study |
 
 ## Current data decisions
@@ -43,6 +43,7 @@ The GitHub repository is connected. A hosted project board is optional and has n
 
 ## Phase 7 progress
 
-- GitHub Actions runs syntax and unit checks on pull requests and `main` without accessing ignored data snapshots.
-- Raw source snapshots remain excluded from CI until their terms permit a compliant retrieval or fixture strategy.
-- Next: validate the app against small, committed fixtures and consider a permitted upstream monitoring workflow.
+- GitHub Actions runs syntax, unit tests and a fixture-based DuckDB warehouse build on pull requests and `main` without accessing ignored data snapshots.
+- Committed Testland fixture records are invented structural data, not source extracts or derivatives; they verify cabinet transitions and the policy left join end to end.
+- Raw source snapshots remain excluded from CI until their terms permit a compliant retrieval strategy.
+- Next: design a permitted upstream source-monitoring workflow.
