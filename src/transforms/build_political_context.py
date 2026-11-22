@@ -148,6 +148,40 @@ def main() -> None:
             }
         )
 
+    bridge_by_party = {
+        (row["country_iso3"], row["parlgov_party_id"]): row
+        for row in bridge_rows
+    }
+    period_by_id = {row["parlgov_cabinet_id"]: row for row in period_rows}
+    membership_rows: list[dict[str, Any]] = []
+    seen_memberships: set[tuple[str, str]] = set()
+    for membership in cabinet_parties:
+        cabinet_id = membership["cabinet_id"]
+        party_id = membership["party_id"]
+        if cabinet_id not in in_scope_cabinet_ids or (cabinet_id, party_id) in seen_memberships:
+            continue
+        party = party_by_id.get(party_id)
+        bridge = bridge_by_party.get((cabinet_country[cabinet_id], party_id))
+        if party is None or bridge is None:
+            continue
+        seen_memberships.add((cabinet_id, party_id))
+        period = period_by_id[cabinet_id]
+        membership_rows.append(
+            {
+                "country_iso3": period["country_iso3"],
+                "parlgov_cabinet_id": cabinet_id,
+                "cabinet_name": period["cabinet_name"],
+                "start_date": period["start_date"],
+                "end_date_exclusive": period["end_date_exclusive"],
+                "parlgov_party_id": party_id,
+                "parlgov_party_short": party["name_short"],
+                "parlgov_party_name": party["name"],
+                "ches_party_id": bridge["ches_party_id"],
+                "mapping_status": bridge["mapping_status"],
+                "review_action": bridge["review_action"],
+            }
+        )
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     write_csv(
         OUTPUT_DIR / "cabinet_periods.csv",
@@ -169,8 +203,25 @@ def main() -> None:
             "review_action",
         ],
     )
+    write_csv(
+        OUTPUT_DIR / "cabinet_party_membership.csv",
+        sorted(membership_rows, key=lambda row: (row["country_iso3"], row["start_date"], row["parlgov_party_name"])),
+        [
+            "country_iso3",
+            "parlgov_cabinet_id",
+            "cabinet_name",
+            "start_date",
+            "end_date_exclusive",
+            "parlgov_party_id",
+            "parlgov_party_short",
+            "parlgov_party_name",
+            "ches_party_id",
+            "mapping_status",
+            "review_action",
+        ],
+    )
     accepted = sum(row["mapping_status"].startswith("accepted_") for row in bridge_rows)
-    print(f"Wrote {len(period_rows)} cabinet periods and {len(bridge_rows)} unique cabinet-party mappings")
+    print(f"Wrote {len(period_rows)} cabinet periods, {len(bridge_rows)} unique cabinet-party mappings and {len(membership_rows)} cabinet-party memberships")
     print(f"Source-identifier matches with a CHES wave observation: {accepted}; review queue: {len(bridge_rows) - accepted}")
 
 

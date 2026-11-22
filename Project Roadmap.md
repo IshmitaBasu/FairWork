@@ -1,6 +1,6 @@
 # FairWork — Project Roadmap
 
-> **Project status:** Phase 5 descriptive research complete; Phase 6 dashboard work is next
+> **Project status:** Phase 6 local dashboard complete; Phase 7 quality automation is in progress
 > **Working title:** **FairWork — Politics, Policy & Women's Economic Equality in Europe**  
 > **Geographic pilot:** Germany, France, Spain and Sweden, **subject to confirmed overlap in source coverage**  
 > **Approved core historical window:** **2010–2022**; policy-context comparison **2015–2022**
@@ -17,6 +17,10 @@ Phase 2 is complete for MVP scoping. The approved countries are Germany, France,
 **Phase 4 update — 21 November 2026:** The local DuckDB warehouse, 32 OECD policy facts, grain-safe country-year and cabinet-transition marts, data-quality checks, and three curated Parquet exports have been created and validated. See `reports/phase_4_analytics_engineering.md`. Phase 5 descriptive research is next.
 
 **Phase 5 update — 22 November 2026:** Reproducible outcome trends, OECD policy-context trends, a cabinet-period timeline, coverage summaries and flag-sensitivity checks have been created. The results remain descriptive, with no causal model or party ranking. See `reports/phase_5_descriptive_results.md`. Phase 6 dashboard work is next.
+
+**Phase 6 update — 22 November 2026:** A tested local Streamlit dashboard now provides country, metric and year filters; country-specific cabinet markers; data-quality notices; policy context; cabinet-party membership and descriptive event windows; comparison; an interactive reviewed-party CHES left-right spectrum; methods; CSV download and on-demand PNG export. It reads local curated exports only and is not publicly deployed. The active country and comparison-country selection are now stated explicitly, and an optional retained-flag filter, source/method drawer, cabinet composition count and keyboard focus styling improve interpretation and access. See `reports/phase_6_dashboard.md`.
+
+**Phase 7 update — 22 November 2026:** GitHub Actions now checks Python syntax and unit tests on pull requests and `main`, without accessing ignored raw or curated source data. Fixture-backed pipeline checks and any source-monitoring workflow remain pending a compliant data strategy. See `.github/workflows/ci.yml` and `docs/deployment_readiness.md`.
 
 ---
 
@@ -631,7 +635,8 @@ A user unfamiliar with the source datasets **will** be able to ask a question ab
 - [ ] Add Python tests for parsing, country-code mapping and party-ID mapping.
 - [ ] Run dbt tests and detect duplicate or missing analytical keys.
 - [ ] Add model tests with small synthetic fixtures for cabinet transition edge cases.
-- [ ] Configure GitHub Actions to run formatting, tests and a representative data build on pull requests.
+- [x] Configure GitHub Actions to run Python syntax and unit tests on pull requests and `main`.
+- [ ] Add formatting and a representative fixture-backed data build to GitHub Actions.
 - [ ] Introduce a scheduled upstream source-check workflow, without assuming published data change daily.
 - [ ] Compare new vs previous source snapshots, reporting revisions and missing years.
 - [ ] Publish a data freshness/date-of-retrieval label in the app.
@@ -1025,4 +1030,4 @@ FairWork **will be considered portfolio-ready only if** every item below is sati
 
 ---
 
-**Next action:** Begin Phase 6 by building a local Streamlit dashboard around the curated data and Phase 5 outputs. Display coverage, source definitions, flags and descriptive-only caveats alongside every chart.
+**Next action:** Add compliant, minimal fixtures for representative pipeline and dashboard checks, while keeping raw source snapshots out of CI until a permitted retrieval strategy is available.

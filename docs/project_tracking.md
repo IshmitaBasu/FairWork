@@ -9,8 +9,8 @@ The GitHub repository is connected. A hosted project board is optional and has n
 | 3. Harmonization and political joins | Complete | `reports/phase_3_harmonization.md` | — |
 | 4. Analytics engineering | Complete | `reports/phase_4_analytics_engineering.md` | — |
 | 5. Research | Complete | `reports/phase_5_descriptive_results.md` | — |
-| 6. Dashboard | Next | None yet | Local Streamlit explorer |
-| 7. Quality and automation | Not started | — | CI and reproducible checks |
+| 6. Dashboard | Complete locally | `reports/phase_6_dashboard.md` | — |
+| 7. Quality and automation | In progress | `.github/workflows/ci.yml` | Add compliant fixtures and source-monitoring design |
 | 8. Release | Not started | — | Demo, documentation and portfolio case study |
 
 ## Current data decisions
@@ -35,8 +35,14 @@ The GitHub repository is connected. A hosted project board is optional and has n
 - Documented 52 country-year rows, 32 policy observations, 34 cabinet periods, source flags and flag-exclusion sensitivity results.
 - Kept outcomes, party survey positions, cabinet timing and policy indicators conceptually separate; no causal model or party ranking was produced.
 
-## Phase 6 entry conditions
+## Phase 6 delivered
 
-- Build the dashboard from curated Parquet/warehouse outputs, not raw source snapshots.
-- Display source definitions, flags, coverage and the descriptive-only interpretation alongside charts.
-- Keep country-year trends separate from dated cabinet periods and CHES survey-wave measures.
+- Built a local Streamlit dashboard from curated Parquet outputs, not raw source snapshots.
+- Added country/year/metric controls, cabinet context, policy context, comparison, data download and methods views.
+- Displayed source definitions, flags, coverage and descriptive-only caveats alongside charts.
+
+## Phase 7 progress
+
+- GitHub Actions runs syntax and unit checks on pull requests and `main` without accessing ignored data snapshots.
+- Raw source snapshots remain excluded from CI until their terms permit a compliant retrieval or fixture strategy.
+- Next: validate the app against small, committed fixtures and consider a permitted upstream monitoring workflow.

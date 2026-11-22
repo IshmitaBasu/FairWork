@@ -2,7 +2,7 @@
 
 ## Decisions
 
-Development, ingestion, modelling and analysis run locally using Python, DuckDB and dbt Core. Published, precomputed files feed a Streamlit and Plotly dashboard. The intended public demo is Streamlit Community Cloud; no AWS, Azure, managed database or always-on data pipeline is required. GitHub Actions is planned for checks and optional refresh monitoring, subject to repository setup and available quotas.
+Development, ingestion, modelling and analysis run locally using Python, DuckDB and dbt Core. Curated, precomputed files now feed a local Streamlit and Plotly dashboard. The intended public demo is Streamlit Community Cloud, subject to a separate source-terms and deployment review; no AWS, Azure, managed database or always-on data pipeline is required. GitHub Actions runs syntax and unit checks on pull requests and `main`; fixture-based data-build checks and optional refresh monitoring remain future work.
 
 ```mermaid
 flowchart LR
@@ -19,7 +19,7 @@ flowchart LR
   G -.-> D
 ```
 
-Eurostat outcome facts, OECD policy facts, dated cabinet periods and a reviewed party-crosswalk queue now feed the local analytics layer. The implemented DuckDB warehouse materializes separate country-year and cabinet-period marts, validates their intended grains, and exports read-only Parquet snapshots. Source terms determine which raw files can be stored or redistributed; raw CHES, ParlGov and OECD snapshots remain excluded from Git. A refresh is a reproducible rebuild followed by validation and a deliberate publication.
+Eurostat outcome facts, OECD policy facts, dated cabinet periods and reviewed CHES party-wave positions now feed the local analytics layer. The implemented DuckDB warehouse materializes separate country-year and cabinet-period marts, validates their intended grains, and exports local Parquet snapshots. The local Streamlit dashboard reads those curated exports, preserving flags, keeping cabinet periods separate from annual outcomes and displaying CHES `lrgen` only at its original survey wave. Source terms determine which raw files can be stored or redistributed; raw CHES, ParlGov and OECD snapshots remain excluded from Git. A refresh is a reproducible rebuild followed by validation and a deliberate publication.
 
 ## Dashboard wireframe
 

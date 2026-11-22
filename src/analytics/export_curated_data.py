@@ -10,7 +10,13 @@ import duckdb
 ROOT = Path(__file__).resolve().parents[2]
 DATABASE_PATH = ROOT / "data" / "processed" / "fairwork.duckdb"
 PUBLISHED_DIR = ROOT / "data" / "published"
-TABLES = ("mart_country_year", "mart_cabinet_transition", "fact_policy_indicator")
+TABLES = (
+    "mart_country_year",
+    "mart_cabinet_transition",
+    "fact_policy_indicator",
+    "fact_ches_party_position",
+    "bridge_cabinet_party_membership",
+)
 
 
 def main() -> None:

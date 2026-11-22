@@ -20,7 +20,9 @@ INPUTS = {
     "country_year": ROOT / "data" / "processed" / "harmonized" / "country_year_outcomes.csv",
     "policy": ROOT / "data" / "processed" / "harmonized" / "fact_policy_indicator.csv",
     "cabinet": ROOT / "data" / "processed" / "political_context" / "cabinet_periods.csv",
+    "cabinet_party_membership": ROOT / "data" / "processed" / "political_context" / "cabinet_party_membership.csv",
     "party_crosswalk": ROOT / "data" / "processed" / "political_context" / "party_crosswalk_review.csv",
+    "ches_position": ROOT / "data" / "processed" / "harmonized" / "fact_ches_party_position.csv",
 }
 
 
@@ -52,6 +54,31 @@ def main() -> None:
                    cast(parlgov_country_id AS integer) AS parlgov_country_id,
                    parlgov_country_short
             FROM read_csv_auto('{sql_path(INPUTS['country'])}', header = true)
+            """
+        )
+        connection.execute(
+            f"""
+            CREATE TABLE analytics.bridge_cabinet_party_membership AS
+            SELECT country_iso3, cast(parlgov_cabinet_id AS integer) AS parlgov_cabinet_id,
+                   cabinet_name, cast(start_date AS date) AS start_date,
+                   nullif(cast(end_date_exclusive AS varchar), '')::date AS end_date_exclusive,
+                   cast(parlgov_party_id AS integer) AS parlgov_party_id,
+                   parlgov_party_short, parlgov_party_name,
+                   nullif(cast(ches_party_id AS varchar), '')::integer AS ches_party_id,
+                   mapping_status, review_action
+            FROM read_csv_auto('{sql_path(INPUTS['cabinet_party_membership'])}', header = true)
+            """
+        )
+        connection.execute(
+            f"""
+            CREATE TABLE analytics.fact_ches_party_position AS
+            SELECT country_iso3, country_name, cast(ches_wave AS integer) AS ches_wave,
+                   cast(ches_party_id AS integer) AS ches_party_id, party_name, parlgov_party_name,
+                   cast(lrgen AS double) AS lrgen, cast(vote_share_pct AS double) AS vote_share_pct,
+                   cast(seat_share_pct AS double) AS seat_share_pct,
+                   cast(womens_rights_position AS double) AS womens_rights_position,
+                   mapping_status, source_id
+            FROM read_csv_auto('{sql_path(INPUTS['ches_position'])}', header = true)
             """
         )
         connection.execute(
@@ -140,6 +167,12 @@ def main() -> None:
             "fact_gender_outcome": 104,
             "stg_country_year_outcomes": 52,
             "fact_policy_indicator": 32,
+            "fact_ches_party_position": connection.execute(
+                "SELECT count(*) FROM analytics.fact_ches_party_position"
+            ).fetchone()[0],
+            "bridge_cabinet_party_membership": connection.execute(
+                "SELECT count(*) FROM analytics.bridge_cabinet_party_membership"
+            ).fetchone()[0],
             "mart_country_year": 52,
             "mart_cabinet_transition": 34,
         }
@@ -154,6 +187,27 @@ def main() -> None:
                    SELECT country_iso3 FROM analytics.dim_country
                    GROUP BY country_iso3 HAVING country_iso3 IS NULL OR count(*) != 1
                )""",
+        )
+        assert_zero(
+            connection,
+            "cabinet-party membership keys",
+            """SELECT count(*) FROM (
+                   SELECT parlgov_cabinet_id, parlgov_party_id FROM analytics.bridge_cabinet_party_membership
+                   GROUP BY 1, 2 HAVING count(*) != 1
+               )""",
+        )
+        assert_zero(
+            connection,
+            "CHES party-position keys",
+            """SELECT count(*) FROM (
+                   SELECT country_iso3, ches_wave, ches_party_id FROM analytics.fact_ches_party_position
+                   GROUP BY 1, 2, 3 HAVING count(*) != 1
+               )""",
+        )
+        assert_zero(
+            connection,
+            "CHES left-right scale",
+            "SELECT count(*) FROM analytics.fact_ches_party_position WHERE lrgen < 0 OR lrgen > 10",
         )
         assert_zero(
             connection,

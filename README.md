@@ -4,9 +4,9 @@ FairWork is a reproducible exploratory data project about governing coalitions, 
 
 ## Current status
 
-**Phase 5 descriptive research is complete; Phase 6 dashboard work is next.** The approved pilot is Germany, France, Spain and Sweden. Core outcomes and political context cover 2010–2022; the comparative OECD policy-context panel covers 2015–2022. No causal statistical analysis or public dashboard has been published.
+**Phase 6 local dashboard is complete; Phase 7 quality automation is next.** The approved pilot is Germany, France, Spain and Sweden. Core outcomes and political context cover 2010–2022; the comparative OECD policy-context panel covers 2015–2022. No causal statistical analysis or public dashboard has been published.
 
-Phase 3 produced a 52-row country-year outcome panel, 34 dated cabinet periods, and a reviewed party crosswalk with 19 accepted links. Seven unsupported party links remain quarantined. Phase 4 adds 32 OECD policy facts, a validated local DuckDB warehouse and curated Parquet exports. Phase 5 adds reproducible descriptive figures, coverage summaries and flag-sensitivity checks.
+Phase 3 produced a 52-row country-year outcome panel, 34 dated cabinet periods, and a reviewed party crosswalk with 19 accepted links. Seven unsupported party links remain quarantined. Phase 4 adds 32 OECD policy facts, 54 reviewed CHES party-wave positions, a validated local DuckDB warehouse and curated Parquet exports. Phase 5 adds reproducible descriptive figures, coverage summaries and flag-sensitivity checks. Phase 6 adds a tested local Streamlit dashboard with an interactive political spectrum.
 
 ## Planned MVP
 
@@ -34,10 +34,13 @@ Phase 3 produced a 52-row country-year outcome panel, 34 dated cabinet periods, 
 - [Phase 3 harmonization report](reports/phase_3_harmonization.md) — panel, cabinet-period and party-crosswalk results.
 - [Phase 4 analytics-engineering report](reports/phase_4_analytics_engineering.md) — warehouse grain, validation and exports.
 - [Phase 5 descriptive results](reports/phase_5_descriptive_results.md) — trends, cabinet context, sensitivity checks and limits.
+- [Dashboard guide](docs/dashboard_guide.md) — local run instructions, filters and interpretation safeguards.
+- [Phase 6 dashboard report](reports/phase_6_dashboard.md) — features, validation and publication boundary.
+- [Deployment-readiness checklist](docs/deployment_readiness.md) — release gate for data terms, reproducibility and public hosting.
 
 ## Next step
 
-Start Phase 6: build the local Streamlit dashboard around the curated marts and Phase 5 descriptive outputs; retain flags, source context and non-causal interpretation notices.
+Phase 7 is in progress: GitHub Actions now runs syntax and unit checks on pull requests and `main`; the next safe work is CI fixtures and a permitted source-monitoring design.
 
 ## Intended local setup
 
@@ -54,3 +57,11 @@ python -m src.analytics.export_curated_data
 ```
 
 This creates ignored local files: `data/processed/fairwork.duckdb` and three Parquet exports in `data/published/`. The checked-in dbt project mirrors the same staging and mart grains; its setup is documented in the Phase 4 report.
+
+## Run the local dashboard
+
+```powershell
+python -m streamlit run app.py
+```
+
+The dashboard opens locally at the URL Streamlit prints, normally `http://localhost:8501`. It is not yet publicly deployed.
