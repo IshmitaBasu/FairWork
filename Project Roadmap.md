@@ -1,6 +1,6 @@
 # FairWork — Project Roadmap
 
-> **Project status:** Phase 4 analytics engineering complete; Phase 5 descriptive research is next
+> **Project status:** Phase 5 descriptive research complete; Phase 6 dashboard work is next
 > **Working title:** **FairWork — Politics, Policy & Women's Economic Equality in Europe**  
 > **Geographic pilot:** Germany, France, Spain and Sweden, **subject to confirmed overlap in source coverage**  
 > **Approved core historical window:** **2010–2022**; policy-context comparison **2015–2022**
@@ -15,6 +15,8 @@ Phase 2 is complete for MVP scoping. The approved countries are Germany, France,
 **Phase 3 update — 21 November 2026:** Country identifiers, approved outcome facts, dated cabinet periods and the party-crosswalk review queue have been created. Nineteen party links are accepted and seven remain intentionally quarantined. See `reports/phase_3_harmonization.md`.
 
 **Phase 4 update — 21 November 2026:** The local DuckDB warehouse, 32 OECD policy facts, grain-safe country-year and cabinet-transition marts, data-quality checks, and three curated Parquet exports have been created and validated. See `reports/phase_4_analytics_engineering.md`. Phase 5 descriptive research is next.
+
+**Phase 5 update — 22 November 2026:** Reproducible outcome trends, OECD policy-context trends, a cabinet-period timeline, coverage summaries and flag-sensitivity checks have been created. The results remain descriptive, with no causal model or party ranking. See `reports/phase_5_descriptive_results.md`. Phase 6 dashboard work is next.
 
 ---
 
@@ -1023,4 +1025,4 @@ FairWork **will be considered portfolio-ready only if** every item below is sati
 
 ---
 
-**Next action:** Begin Phase 5 descriptive research using the validated curated marts. Report coverage and flags before trends, retain the four-country limitations, and do not make causal claims.
+**Next action:** Begin Phase 6 by building a local Streamlit dashboard around the curated data and Phase 5 outputs. Display coverage, source definitions, flags and descriptive-only caveats alongside every chart.

@@ -4,9 +4,9 @@ FairWork is a reproducible exploratory data project about governing coalitions, 
 
 ## Current status
 
-**Phase 4 analytics engineering is complete; Phase 5 research is next.** The approved pilot is Germany, France, Spain and Sweden. Core outcomes and political context cover 2010–2022; the comparative OECD policy-context panel covers 2015–2022. No statistical analysis or public dashboard has been published.
+**Phase 5 descriptive research is complete; Phase 6 dashboard work is next.** The approved pilot is Germany, France, Spain and Sweden. Core outcomes and political context cover 2010–2022; the comparative OECD policy-context panel covers 2015–2022. No causal statistical analysis or public dashboard has been published.
 
-Phase 3 produced a 52-row country-year outcome panel, 34 dated cabinet periods, and a reviewed party crosswalk with 19 accepted links. Seven unsupported party links remain quarantined. Phase 4 adds 32 OECD policy facts, a validated local DuckDB warehouse and curated Parquet exports.
+Phase 3 produced a 52-row country-year outcome panel, 34 dated cabinet periods, and a reviewed party crosswalk with 19 accepted links. Seven unsupported party links remain quarantined. Phase 4 adds 32 OECD policy facts, a validated local DuckDB warehouse and curated Parquet exports. Phase 5 adds reproducible descriptive figures, coverage summaries and flag-sensitivity checks.
 
 ## Planned MVP
 
@@ -33,10 +33,11 @@ Phase 3 produced a 52-row country-year outcome panel, 34 dated cabinet periods, 
 - [Phase 2 scope decision](reports/phase_2_scope_decision.md) — approved data scope and exclusions.
 - [Phase 3 harmonization report](reports/phase_3_harmonization.md) — panel, cabinet-period and party-crosswalk results.
 - [Phase 4 analytics-engineering report](reports/phase_4_analytics_engineering.md) — warehouse grain, validation and exports.
+- [Phase 5 descriptive results](reports/phase_5_descriptive_results.md) — trends, cabinet context, sensitivity checks and limits.
 
 ## Next step
 
-Start Phase 5: conduct descriptive research and sensitivity checks using the curated marts; do not make causal claims or collapse cabinet periods into annual government assignments.
+Start Phase 6: build the local Streamlit dashboard around the curated marts and Phase 5 descriptive outputs; retain flags, source context and non-causal interpretation notices.
 
 ## Intended local setup
 

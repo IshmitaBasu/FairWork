@@ -18,6 +18,10 @@
 | Policy and employment | Country × year for an eligible policy indicator and employment gap | Show coverage and definitions first; descriptive scatter or trends only if country-year matches are meaningful. |
 | Political context | Cabinet-party records joined to CHES party-wave observations | Show original survey year and scale, reviewed match status and missingness. Do not fabricate annual party scores. |
 
+## Implemented descriptive baseline
+
+Phase 5 implements the first three feasible descriptive views: outcome trends with country-specific cabinet markers, OECD PF3.2 policy-context trends, and a dated cabinet-period timeline. It also publishes coverage and flag-exclusion sensitivity tables. A panel model was deliberately not fitted: four countries and unmeasured confounding do not support a credible causal interpretation. See `reports/phase_5_descriptive_results.md`.
+
 Controls to consider for an exploratory panel model are country and year effects and, where defensible and available, GDP per capita, unemployment and relevant demographic composition. Define their sources, units, coverage, timing and rationale before use; report sample size and missingness. With only four tentative countries and limited years, model complexity, standard errors and inference may be unreliable. If data or sample size are inadequate, publish descriptive results instead.
 
 ## Neutrality and inference

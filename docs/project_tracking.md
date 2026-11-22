@@ -8,8 +8,8 @@ The GitHub repository is connected. A hosted project board is optional and has n
 | 2. Source audit and scope | Complete | `reports/phase_2_scope_decision.md` | — |
 | 3. Harmonization and political joins | Complete | `reports/phase_3_harmonization.md` | — |
 | 4. Analytics engineering | Complete | `reports/phase_4_analytics_engineering.md` | — |
-| 5. Research | Next | None yet | Descriptive analysis and sensitivity checks |
-| 6. Dashboard | Not started | — | Local Streamlit explorer |
+| 5. Research | Complete | `reports/phase_5_descriptive_results.md` | — |
+| 6. Dashboard | Next | None yet | Local Streamlit explorer |
 | 7. Quality and automation | Not started | — | CI and reproducible checks |
 | 8. Release | Not started | — | Demo, documentation and portfolio case study |
 
@@ -29,8 +29,14 @@ The GitHub repository is connected. A hosted project board is optional and has n
 - Added unique-key, metric-unit, range, date-bound and country-relationship checks to the executable warehouse build, plus matching dbt SQL tests.
 - Exported local Parquet snapshots for the country-year mart, cabinet-transition mart and policy fact table.
 
-## Phase 5 entry conditions
+## Phase 5 delivered
 
-- Use the curated outputs for descriptive exploration only.
-- Keep outcomes, party survey positions, cabinet timing and policy indicators conceptually separate.
-- Document missingness, flags and the limited four-country sample in every analytical output.
+- Generated reproducible outcome, policy-context and cabinet-period figures from the validated marts.
+- Documented 52 country-year rows, 32 policy observations, 34 cabinet periods, source flags and flag-exclusion sensitivity results.
+- Kept outcomes, party survey positions, cabinet timing and policy indicators conceptually separate; no causal model or party ranking was produced.
+
+## Phase 6 entry conditions
+
+- Build the dashboard from curated Parquet/warehouse outputs, not raw source snapshots.
+- Display source definitions, flags, coverage and the descriptive-only interpretation alongside charts.
+- Keep country-year trends separate from dated cabinet periods and CHES survey-wave measures.

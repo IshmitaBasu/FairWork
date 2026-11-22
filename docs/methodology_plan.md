@@ -2,7 +2,7 @@
 
 ## Source and coverage gate
 
-**Completed through analytics engineering on 21 November 2026.** The approved scope and exclusions are in `reports/phase_2_scope_decision.md`; the harmonized output and party-link quarantine are in `reports/phase_3_harmonization.md`; tested grains and exports are in `reports/phase_4_analytics_engineering.md`.
+**Completed through descriptive research on 22 November 2026.** The approved scope and exclusions are in `reports/phase_2_scope_decision.md`; the harmonized output and party-link quarantine are in `reports/phase_3_harmonization.md`; tested grains and exports are in `reports/phase_4_analytics_engineering.md`; descriptive outputs and limitations are in `reports/phase_5_descriptive_results.md`.
 
 In Week 2, inventory source release, download location, retrieval date, licence, redistribution conditions, dimensions, units, flags and country-year coverage. Construct a country × year × source × metric availability matrix before choosing the final pilot. Confirm the Eurostat age, economic activity and other dimensions from the actual files. Verify ParlGov cabinet end dates and CHES party identifiers against downloaded codebooks. Document reasons for exclusions and revisions; no values or coverage are assumed confirmed yet.
 
@@ -16,7 +16,7 @@ In Week 2, inventory source release, download location, retrieval date, licence,
 
 ## Analysis and reporting
 
-Describe coverage before trends. Use consistent definitions for country comparisons and mark breaks and flags. Plot transition dates against annual observations without attributing annual outcomes to a single cabinet by default. Predefine any event window and report its available observations and sensitivity to its boundaries.
+Coverage is described before trends. The Phase 5 baseline uses consistent definitions, retains flags, plots each country's own transition dates against annual observations and avoids attributing a yearly outcome to a single cabinet. It reports flag-exclusion sensitivity as a transparency check, not a causal robustness result.
 
 For policy comparisons, select only indicators with documented, comparable definitions and enough observations; otherwise omit the panel and explain why. If an exploratory model is feasible, document specification, controls, sample, missing-data handling, uncertainty and sensitivity to choices before interpreting it. Country and year effects cannot resolve all confounding. With few countries, avoid confident inferential claims and fall back to descriptive analysis when uncertainty cannot be estimated defensibly.
 
